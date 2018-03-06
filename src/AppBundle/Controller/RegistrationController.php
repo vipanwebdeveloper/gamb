@@ -40,4 +40,12 @@ class RegistrationController extends Controller
             'form' => $form->createView(),
         ]);
     }
+	
+	/**
+	 * @Route("/reset_password", name="send_reset_password")
+	 */
+	public function resetPasswordAction()
+	{
+		return $this->redirectToRoute('login');
+	}
 }
