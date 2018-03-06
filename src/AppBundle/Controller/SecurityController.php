@@ -25,6 +25,19 @@ class SecurityController extends Controller
     }
 
     /**
+     * @Route("/forgot", name="forgot_password")
+     */
+    public function forgotAction()
+    {
+       $helper = $this->get('security.authentication_utils');
+
+	   return $this->render('auth/forgot.html.twig',[
+               'last_username' => $helper->getLastUsername(),
+               'error'         => $helper->getLastAuthenticationError(),
+		]);
+    }
+
+    /**
      * @Route("/login_check", name="security_login_check")
      */
     public function loginCheckAction()
