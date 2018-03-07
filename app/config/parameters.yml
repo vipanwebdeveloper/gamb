@@ -10,3 +10,4 @@ parameters:
     mailer_user: null
     mailer_password: null
     secret: ThisTokenIsNotSoSecretChangeIt
+    betting_app_title: 'Betting on currencies'

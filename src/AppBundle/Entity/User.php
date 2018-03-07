@@ -118,4 +118,8 @@ class User implements UserInterface
     {
         return null;
     }
+    public function getGravatar()
+    {
+		return 'https://www.gravatar.com/avatar/'.md5($this->email);
+	}
 }

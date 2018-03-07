@@ -1,23 +1,23 @@
 {% block sidebar %}
-	<li>
-		<a href="{{ path('welcome') }}" class="active">
+	<li {% if app.request.get('_route') == 'admin_dashboard' %} class="active" {% endif %}>
+		<a href="{{ path('admin_dashboard') }}" class="active">
 			<i class="material-icons">home</i>
 			<span>Home</span>
 		</a>
 	</li>
-	<li class="active">
+	<li{% if app.request.get('_route') == 'currency_index' %} class="active" {% endif %}>
 		<a href="javascript:void(0);" class="menu-toggle">
 			<i class="material-icons">widgets</i>
 			<span>Currency Manager</span>
 		</a>
 		<ul class="ml-menu">
-			<li>
+			<li{% if app.request.get('_route') == 'currency_index' %} class="active" {% endif %}>
 				<a href="javascript:void(0);" class="menu-toggle">
 					<span>Currencies</span>
 				</a>
 				<ul class="ml-menu">
-					<li>
-						<a href="../../pages/widgets/cards/basic.html">All</a>
+					<li{% if app.request.get('_route') == 'currency_index' %} class="active" {% endif %}>
+						<a href="{{ path('currency_index') }}">All</a>
 					</li>
 					<li>
 						<a href="../../pages/widgets/cards/colored.html">Add</a>

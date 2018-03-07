@@ -13,7 +13,7 @@ class CurrencyType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')->add('slug')->add('active')->add('sortOrder')->add('createdOn')->add('lastUpdated');
+        $builder->add('name')->add('code')->add('active')->add('symbol')->add('createdOn')->add('modifiedOn')->add('iconimage');
     }/**
      * {@inheritdoc}
      */

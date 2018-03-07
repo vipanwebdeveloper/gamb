@@ -31,9 +31,9 @@ class Currency
     /**
      * @var string
      *
-     * @ORM\Column(name="slug", type="string", length=255, unique=true)
+     * @ORM\Column(name="code", type="string", length=50, unique=true)
      */
-    private $slug;
+    private $code;
 
     /**
      * @var bool
@@ -43,25 +43,32 @@ class Currency
     private $active;
 
     /**
-     * @var int
+     * @var string
      *
-     * @ORM\Column(name="sort_order", type="integer")
+     * @ORM\Column(name="symbol", type="string", length=10, unique=true)
      */
-    private $sortOrder;
+    private $symbol;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="created_on", type="datetimetz")
+     * @ORM\Column(name="created_on", type="datetime")
      */
     private $createdOn;
 
     /**
-     * @var \DateTime
+     * @var string
      *
-     * @ORM\Column(name="last_updated", type="datetimetz")
+     * @ORM\Column(name="modified_on", type="datetime")
      */
-    private $lastUpdated;
+    private $modifiedOn;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="iconimage", type="string", length=255)
+     */
+    private $iconimage;
 
 
     /**
@@ -99,27 +106,27 @@ class Currency
     }
 
     /**
-     * Set slug
+     * Set code
      *
-     * @param string $slug
+     * @param string $code
      *
      * @return Currency
      */
-    public function setSlug($slug)
+    public function setCode($code)
     {
-        $this->slug = $slug;
+        $this->code = $code;
 
         return $this;
     }
 
     /**
-     * Get slug
+     * Get code
      *
      * @return string
      */
-    public function getSlug()
+    public function getCode()
     {
-        return $this->slug;
+        return $this->code;
     }
 
     /**
@@ -147,27 +154,27 @@ class Currency
     }
 
     /**
-     * Set sortOrder
+     * Set symbol
      *
-     * @param integer $sortOrder
+     * @param string $symbol
      *
      * @return Currency
      */
-    public function setSortOrder($sortOrder)
+    public function setSymbol($symbol)
     {
-        $this->sortOrder = $sortOrder;
+        $this->symbol = $symbol;
 
         return $this;
     }
 
     /**
-     * Get sortOrder
+     * Get symbol
      *
-     * @return int
+     * @return string
      */
-    public function getSortOrder()
+    public function getSymbol()
     {
-        return $this->sortOrder;
+        return $this->symbol;
     }
 
     /**
@@ -195,27 +202,51 @@ class Currency
     }
 
     /**
-     * Set lastUpdated
+     * Set modifiedOn
      *
-     * @param \DateTime $lastUpdated
+     * @param string $modifiedOn
      *
      * @return Currency
      */
-    public function setLastUpdated($lastUpdated)
+    public function setModifiedOn($modifiedOn)
     {
-        $this->lastUpdated = $lastUpdated;
+        $this->modifiedOn = $modifiedOn;
 
         return $this;
     }
 
     /**
-     * Get lastUpdated
+     * Get modifiedOn
      *
-     * @return \DateTime
+     * @return string
      */
-    public function getLastUpdated()
+    public function getModifiedOn()
     {
-        return $this->lastUpdated;
+        return $this->modifiedOn;
+    }
+
+    /**
+     * Set iconimage
+     *
+     * @param string $iconimage
+     *
+     * @return Currency
+     */
+    public function setIconimage($iconimage)
+    {
+        $this->iconimage = $iconimage;
+
+        return $this;
+    }
+
+    /**
+     * Get iconimage
+     *
+     * @return string
+     */
+    public function getIconimage()
+    {
+        return $this->iconimage;
     }
 }
 

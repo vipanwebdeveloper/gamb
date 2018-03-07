@@ -5,20 +5,19 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Currency;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
-use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Currency controller.
  *
- * @Route("currencies")
+ * @Route("admin/currency")
  */
 class CurrencyController extends Controller
 {
     /**
      * Lists all currency entities.
      *
-     * @Route("/", name="currencies_index")
+     * @Route("/", name="currency_index")
      * @Method("GET")
      */
     public function indexAction()
@@ -27,7 +26,7 @@ class CurrencyController extends Controller
 
         $currencies = $em->getRepository('AppBundle:Currency')->findAll();
 
-        return $this->render('currency/index.html.twig', array(
+        return $this->render('@App/currency/index.html.twig', array(
             'currencies' => $currencies,
         ));
     }
@@ -35,7 +34,7 @@ class CurrencyController extends Controller
     /**
      * Creates a new currency entity.
      *
-     * @Route("/new", name="currencies_new")
+     * @Route("/new", name="currency_new")
      * @Method({"GET", "POST"})
      */
     public function newAction(Request $request)
@@ -49,10 +48,10 @@ class CurrencyController extends Controller
             $em->persist($currency);
             $em->flush();
 
-            return $this->redirectToRoute('currencies_show', array('id' => $currency->getId()));
+            return $this->redirectToRoute('currency_show', array('id' => $currency->getId()));
         }
 
-        return $this->render('currency/new.html.twig', array(
+        return $this->render('@App/currency/new.html.twig', array(
             'currency' => $currency,
             'form' => $form->createView(),
         ));
@@ -61,14 +60,14 @@ class CurrencyController extends Controller
     /**
      * Finds and displays a currency entity.
      *
-     * @Route("/{id}", name="currencies_show")
+     * @Route("/{id}", name="currency_show")
      * @Method("GET")
      */
-    public function showAction(Currency $currency = null)
+    public function showAction(Currency $currency)
     {
         $deleteForm = $this->createDeleteForm($currency);
 
-        return $this->render('currency/show.html.twig', array(
+        return $this->render('@App/currency/show.html.twig', array(
             'currency' => $currency,
             'delete_form' => $deleteForm->createView(),
         ));
@@ -77,10 +76,10 @@ class CurrencyController extends Controller
     /**
      * Displays a form to edit an existing currency entity.
      *
-     * @Route("/{id}/edit", name="currencies_edit")
+     * @Route("/{id}/edit", name="currency_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Currency $currency = null)
+    public function editAction(Request $request, Currency $currency)
     {
         $deleteForm = $this->createDeleteForm($currency);
         $editForm = $this->createForm('AppBundle\Form\CurrencyType', $currency);
@@ -89,10 +88,10 @@ class CurrencyController extends Controller
         if ($editForm->isSubmitted() && $editForm->isValid()) {
             $this->getDoctrine()->getManager()->flush();
 
-            return $this->redirectToRoute('currencies_edit', array('id' => $currency->getId()));
+            return $this->redirectToRoute('currency_edit', array('id' => $currency->getId()));
         }
 
-        return $this->render('currency/edit.html.twig', array(
+        return $this->render('@App/currency/edit.html.twig', array(
             'currency' => $currency,
             'edit_form' => $editForm->createView(),
             'delete_form' => $deleteForm->createView(),
@@ -102,10 +101,10 @@ class CurrencyController extends Controller
     /**
      * Deletes a currency entity.
      *
-     * @Route("/{id}", name="currencies_delete")
+     * @Route("/{id}", name="currency_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Currency $currency = null)
+    public function deleteAction(Request $request, Currency $currency)
     {
         $form = $this->createDeleteForm($currency);
         $form->handleRequest($request);
@@ -116,7 +115,7 @@ class CurrencyController extends Controller
             $em->flush();
         }
 
-        return $this->redirectToRoute('currencies_index');
+        return $this->redirectToRoute('currency_index');
     }
 
     /**
@@ -126,11 +125,10 @@ class CurrencyController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Currency $currency = null)
+    private function createDeleteForm(Currency $currency)
     {
-		
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('currencies_delete', array('id' => $currency->getId())))
+            ->setAction($this->generateUrl('currency_delete', array('id' => $currency->getId())))
             ->setMethod('DELETE')
             ->getForm()
         ;

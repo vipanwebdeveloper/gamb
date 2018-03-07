@@ -2,7 +2,9 @@
 # https://symfony.com/doc/current/service_container.html
 parameters:
     #parameter_name: value
-
+twig:
+    globals:
+        site_title: '%betting_app_title%'
 services:
     app.form_login_authenticator:
         class: AppBundle\Security\FormLoginAuthenticator
