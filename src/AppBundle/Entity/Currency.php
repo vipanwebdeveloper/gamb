@@ -2,45 +2,67 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
 /**
  * Currency
+ *
+ * @ORM\Table(name="currency")
+ * @ORM\Entity(repositoryClass="AppBundle\Repository\CurrencyRepository")
  */
 class Currency
 {
     /**
      * @var int
+     *
+     * @ORM\Column(name="id", type="integer")
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="AUTO")
      */
     private $id;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="name", type="string", length=255)
      */
     private $name;
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="slug", type="string", length=255, unique=true)
      */
-    private $code;
+    private $slug;
 
     /**
      * @var bool
+     *
+     * @ORM\Column(name="active", type="boolean")
      */
     private $active;
 
     /**
      * @var int
+     *
+     * @ORM\Column(name="sort_order", type="integer")
      */
     private $sortOrder;
 
     /**
-     * @var string
+     * @var \DateTime
+     *
+     * @ORM\Column(name="created_on", type="datetimetz")
      */
-    private $icon;
+    private $createdOn;
 
     /**
      * @var \DateTime
+     *
+     * @ORM\Column(name="last_updated", type="datetimetz")
      */
-    private $createdOn;
+    private $lastUpdated;
+
 
     /**
      * Get id
@@ -77,27 +99,27 @@ class Currency
     }
 
     /**
-     * Set code
+     * Set slug
      *
-     * @param string $code
+     * @param string $slug
      *
      * @return Currency
      */
-    public function setCode($code)
+    public function setSlug($slug)
     {
-        $this->code = $code;
+        $this->slug = $slug;
 
         return $this;
     }
 
     /**
-     * Get code
+     * Get slug
      *
      * @return string
      */
-    public function getCode()
+    public function getSlug()
     {
-        return $this->code;
+        return $this->slug;
     }
 
     /**
@@ -149,35 +171,11 @@ class Currency
     }
 
     /**
-     * Set icon
-     *
-     * @param string $icon
-     *
-     * @return Currency
-     */
-    public function setIcon($icon)
-    {
-        $this->icon = $icon;
-
-        return $this;
-    }
-
-    /**
-     * Get icon
-     *
-     * @return string
-     */
-    public function getIcon()
-    {
-        return $this->icon;
-    }
-
-    /**
      * Set createdOn
      *
      * @param \DateTime $createdOn
      *
-     * @return Category
+     * @return Currency
      */
     public function setCreatedOn($createdOn)
     {
@@ -195,4 +193,29 @@ class Currency
     {
         return $this->createdOn;
     }
+
+    /**
+     * Set lastUpdated
+     *
+     * @param \DateTime $lastUpdated
+     *
+     * @return Currency
+     */
+    public function setLastUpdated($lastUpdated)
+    {
+        $this->lastUpdated = $lastUpdated;
+
+        return $this;
+    }
+
+    /**
+     * Get lastUpdated
+     *
+     * @return \DateTime
+     */
+    public function getLastUpdated()
+    {
+        return $this->lastUpdated;
+    }
 }
+
