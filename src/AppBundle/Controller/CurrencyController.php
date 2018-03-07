@@ -5,7 +5,8 @@ namespace AppBundle\Controller;
 use AppBundle\Entity\Currency;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\HttpFoundation\Request;
 
 /**
  * Currency controller.
@@ -63,7 +64,7 @@ class CurrencyController extends Controller
      * @Route("/{id}", name="currencies_show")
      * @Method("GET")
      */
-    public function showAction(Currency $currency)
+    public function showAction(Currency $currency = null)
     {
         $deleteForm = $this->createDeleteForm($currency);
 
@@ -79,7 +80,7 @@ class CurrencyController extends Controller
      * @Route("/{id}/edit", name="currencies_edit")
      * @Method({"GET", "POST"})
      */
-    public function editAction(Request $request, Currency $currency)
+    public function editAction(Request $request, Currency $currency = null)
     {
         $deleteForm = $this->createDeleteForm($currency);
         $editForm = $this->createForm('AppBundle\Form\CurrencyType', $currency);
@@ -104,7 +105,7 @@ class CurrencyController extends Controller
      * @Route("/{id}", name="currencies_delete")
      * @Method("DELETE")
      */
-    public function deleteAction(Request $request, Currency $currency)
+    public function deleteAction(Request $request, Currency $currency = null)
     {
         $form = $this->createDeleteForm($currency);
         $form->handleRequest($request);
@@ -125,8 +126,9 @@ class CurrencyController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createDeleteForm(Currency $currency)
+    private function createDeleteForm(Currency $currency = null)
     {
+		
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('currencies_delete', array('id' => $currency->getId())))
             ->setMethod('DELETE')
