@@ -26,7 +26,7 @@ class ListController extends Controller
           'Lord Varys'         => 'Conleth Hill'
         ];
 
-        return $this->render('default/index.html.twig', array(
+        return $this->render('@App/default/index.html.twig', array(
 			'character' => $characters,
             'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
 		));

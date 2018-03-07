@@ -1,0 +1,74 @@
+AppBundle\Entity\Users:
+    type: entity
+    table: users
+    id:
+        id:
+            type: integer
+            nullable: false
+            options:
+                unsigned: false
+            id: true
+            generator:
+                strategy: IDENTITY
+    fields:
+        firstname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        lastname:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        password:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        email:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        salt:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+        roles:
+            type: string
+            nullable: false
+            length: 255
+            options:
+                fixed: false
+        gender:
+            type: boolean
+            nullable: false
+        isActive:
+            type: smallint
+            nullable: false
+            options:
+                unsigned: false
+            column: is_active
+        creationDate:
+            type: datetime
+            nullable: false
+            column: creation_date
+        modificationDate:
+            type: datetime
+            nullable: true
+            column: modification_date
+        passwordResetCode:
+            type: string
+            nullable: true
+            length: 255
+            options:
+                fixed: false
+            column: password_reset_code
+    lifecycleCallbacks: {  }

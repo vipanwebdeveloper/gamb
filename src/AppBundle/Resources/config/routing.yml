@@ -1,0 +1,35 @@
+index:
+    path:     /index
+    defaults: { _controller: AppBundle:Currency:index }
+
+add:
+    path:     /add
+    defaults: { _controller: AppBundle:Currency:add }
+
+edit:
+    path:     /edit
+    defaults: { _controller: AppBundle:Currency:edit }
+
+index:
+    path:     /index
+    defaults: { _controller: AppBundle:Currency:index }
+
+delete:
+    path:     /delete
+    defaults: { _controller: AppBundle:Currency:delete }
+
+edit:
+    path:     /edit
+    defaults: { _controller: AppBundle:Currency:edit }
+
+view:
+    path:     /view
+    defaults: { _controller: AppBundle:Currency:view }
+
+add:
+    path:     /add
+    defaults: { _controller: AppBundle:Currency:add }
+
+report:
+    path:     /report
+    defaults: { _controller: AppBundle:Currency:report }
